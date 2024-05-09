@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 import { apiUrl } from '../../config/apiUrls';
 import { getRequest, postRequest } from '../../config/httpRequest';
 
@@ -18,10 +19,22 @@ const Instructor = () => {
 
   const [showUpdateBtn, setShowUpdateBtn] = useState('false');
   const [lectureId, setLectureId] = useState('');
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     getInstructor()
   }, [])
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      navigate('/');
+    }
+  }, [navigate]);
 
 
   const getInstructor = () => {
