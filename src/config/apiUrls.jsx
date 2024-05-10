@@ -1,5 +1,7 @@
 
-const baseUrl = "http://localhost:8000/api"
+// const baseUrl = "http://localhost:8000/api"
+
+const baseUrl = "https://online-task-shedule-backend.onrender.com/api"
 
 export const apiUrl = {
     "auth":{
